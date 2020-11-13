@@ -81,12 +81,12 @@ describe "CLI Jukebox" do
   end
 
   context "with commands" do
-    it "responds to 'exit'" do
-      expect($stdout).to receive(:puts).with(/Please enter a command:/)
-      expect($stdout).to receive(:puts).with(/Goodbye/)
-      allow(self).to receive(:gets).and_return("exit")
-      run(songs)
-    end
+    # it "responds to 'exit'" do
+    #   expect($stdout).to receive(:puts).with(/Please enter a command:/)
+    #   expect($stdout).to receive(:puts).with(/Goodbye/)
+    #   allow(self).to receive(:gets).and_return("exit")
+    #   run(songs)
+    # end
 
     it "responds to 'help'" do
       allow(self).to receive(:gets).and_return("help", "exit")
@@ -122,7 +122,13 @@ describe "CLI Jukebox" do
       allow(self).to receive(:gets).and_return("play", "1", "exit")
       expect{ run(songs) }.to output(/Playing Phoenix - 1901/).to_stdout
     end
-
+    
+    it "responds to 'exit'" do
+      expect($stdout).to receive(:puts).with(/Please enter a command:/)
+      expect($stdout).to receive(:puts).with(/Goodbye/)
+      allow(self).to receive(:gets).and_return("exit")
+      run(songs)
+    end
   end
 
 end
